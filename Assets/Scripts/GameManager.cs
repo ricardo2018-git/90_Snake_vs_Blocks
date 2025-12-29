@@ -4,13 +4,20 @@ public class GameManager : MonoBehaviour
 {
     // Variaveis de Scripts
     public static GameManager gameManager;  // Referencia desse script
-    private UIManager uimanager;            // Referencia do script UI
+    private Player player;                  // Referencia do script player
+    private UIManager uiManager;            // Referencia do script UI
     // ------------------------
 
     // Variaveis de Componentes
     // ------------------------
 
     // Variaveis de Controle
+    public int health = 100;                 // Vida atual
+    public bool isDead = false;              // Sinaliza que player esta vivo
+
+    public float playerPosX, playerPosY;                // Posição do player
+    public float minCamX, maxCamX, minCamY, maxCamY;    // Posição da camera
+    private string filePath;                            // Caminho onde vai ser salvo arquivo
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
@@ -29,12 +36,17 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);  // Não deixa destruir esse script entre cena ou quando recarregar cena
     */
+        filePath = Application.persistentDataPath + "/playerInfo.dat";  // Passa o caminho e nome do arquivo que deve ser salvo os dados do Player
+        //Path onde vai esta o arquivo: C:\Users\rp_mi\AppData\LocalLow\DefaultCompany\90_Snake_vs_Blocks\playerInfo.dat
+        Load();     // Carrega dados salvo Fase etc..
     }
 
     void Start()
     {
         // Associa Scripts
-
+        player = GameObject.Find("Player").GetComponent<Player>();          // Associa Player em tempo de execução
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();    // Procura obj Canvas e inicia acesso ao script
+        
         // Associa Componentes
 
         // Variaveis de Controle, metodos e funções
@@ -44,6 +56,16 @@ public class GameManager : MonoBehaviour
 
     
     void Update()
+    {
+        
+    }
+
+    public void Save()  // Salva todos dados do jogo
+    {
+        
+    }
+
+    public void Load()  // Carrega todos os dados do jogo
     {
         
     }

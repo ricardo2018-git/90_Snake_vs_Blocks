@@ -5,6 +5,8 @@ using UnityEngine.UI;   // Responsavel pelos componentes de UI
 public class UIManager : MonoBehaviour
 {
     // Variaveis de Scripts
+    private Player player;          // Referencia do script player
+    private Inventory inventory;    // Referencia do script do inventario
     // ------------------------
 
     // Variaveis de Componentes
@@ -17,6 +19,7 @@ public class UIManager : MonoBehaviour
     // ------------------------
 
     // Variaveis de UI
+    public TMP_Text healthText;     // Qts de Vidas Player
     // ------------------------
 
     void Awake()
@@ -27,6 +30,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         // Associa Scripts
+        player = GameObject.Find("Player").GetComponent<Player>();  // Associa Player em tempo de execução
 
         // Associa Componentes
 
