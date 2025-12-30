@@ -13,24 +13,24 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Player Bullet
+  - Player Shot
+  - Player Hit
   - 
   - 
+  - Enemy
+  - Enemy Bullet
+  - Enemy Shot
+  - Enemy Hit
   - 
   - 
+  - Boss
+  - Boss Bullet
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Collectable
   - 
   - 
   - 
