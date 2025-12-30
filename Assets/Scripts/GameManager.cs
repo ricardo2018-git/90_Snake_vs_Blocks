@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     // ------------------------
 
     // Variaveis de Controle
-    public int health = 100;                 // Vida atual
-    public bool isDead = false;              // Sinaliza que player esta vivo
+    public int health = 100;                // Vida atual
+    public bool isDead = false;             // Sinaliza que player esta vivo
 
     public float playerPosX, playerPosY;                // Posição do player
     public float minCamX, maxCamX, minCamY, maxCamY;    // Posição da camera
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     // ------------------------
 
     void Awake()
-    {/*
+    {
         // Sistema para não ser destruido esse script entre cenas
         if (gameManager == null)        // Verifica se a instancia é nula
         {
@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);        // Destroi obj de cena
         }
         DontDestroyOnLoad(gameObject);  // Não deixa destruir esse script entre cena ou quando recarregar cena
-    */
-        filePath = Application.persistentDataPath + "/playerInfo.dat";  // Passa o caminho e nome do arquivo que deve ser salvo os dados do Player
+        
+        //filePath = Application.persistentDataPath + "/playerInfo.dat";  // Passa o caminho e nome do arquivo que deve ser salvo os dados do Player
         //Path onde vai esta o arquivo: C:\Users\rp_mi\AppData\LocalLow\DefaultCompany\90_Snake_vs_Blocks\playerInfo.dat
-        Load();     // Carrega dados salvo Fase etc..
+        //Load();     // Carrega dados salvo Fase etc..
     }
 
     void Start()

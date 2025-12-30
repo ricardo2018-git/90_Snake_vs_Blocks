@@ -28,6 +28,7 @@ public class Inventory : MonoBehaviour
         {
             Destroy(gameObject);        // Destroi obj de cena
         }
+        transform.parent = null;        // Remove o parent, tornando root. Ou seja ele so pode ser persistido se não for filho, mas isso resolve o problema
         DontDestroyOnLoad(gameObject);  // Não deixa destruir esse script entre cena ou quando recarregar cena
     }
 

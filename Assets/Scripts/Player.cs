@@ -18,13 +18,15 @@ public class Player : MonoBehaviour
     public int health;                  // Vida atual
     public int maxHealth;               // Maximo de vida player
 
-    private float speed;                // Velocidade atual   
+    public float speed = 30;            // Velocidade atual   
     public float jumpForce;             // Força do pulo
 
     private bool isDead;                // Sinaliza se player esta morto
     private bool jump;                  // Sinaliza se player esta pulando
     private bool facingRight = true;    // Sinaliza se player esta olhando para direita
     private bool onGround;              // Sinaliza se player esta no chão
+
+    private float mouseDistance;        // Distancia do mouse até player
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
@@ -58,7 +60,10 @@ public class Player : MonoBehaviour
     {
         if (!isDead)    // Verifica se Player esta Vivo
         {
-            
+            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);   // Retorna posição do mouse sobre a tela
+            float xPos = worldPoint.x;                                                  // Aqui estou pegando apena a posição do mouse em x
+
+            mouseDistance = Mathf.Clamp(xPos - transform.position.x, -1, 1);            // Limita posição entre -1 e 1
         }
     }
 
@@ -66,7 +71,7 @@ public class Player : MonoBehaviour
     {
         if (!isDead)    // Verifica se Player esta Vivo
         {
-            
+            rb.linearVelocity = new Vector2(mouseDistance *  speed, 0); // Faz player se movimentar
         }
     }
 
