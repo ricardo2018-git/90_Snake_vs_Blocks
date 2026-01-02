@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public int health = 100;                // Vida atual
     public bool isDead = false;             // Sinaliza que player esta vivo
 
+    public float gameSpeed = 2;             // Velocidade da tela
+
     public float playerPosX, playerPosY;                // Posição do player
     public float minCamX, maxCamX, minCamY, maxCamY;    // Posição da camera
     private string filePath;                            // Caminho onde vai ser salvo arquivo

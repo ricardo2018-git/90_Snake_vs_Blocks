@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     {
         if (!isDead)    // Verifica se Player esta Vivo
         {
-            rb.linearVelocity = new Vector2(mouseDistance *  speed, 0); // Faz player se movimentar
+            rb.linearVelocity = new Vector2(mouseDistance *  speed, gameManager.gameSpeed); // Faz player se movimentar em x seguindo o mouse e em y valorrecebido do game manager
         }
     }
 
