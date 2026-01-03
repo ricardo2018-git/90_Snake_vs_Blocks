@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro;            // Texto no canvas
+using TMPro;            // Para manipular componente de Texto do canvas
 using UnityEngine.UI;   // Responsavel pelos componentes de UI
 
 public class UIManager : MonoBehaviour
