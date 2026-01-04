@@ -51,9 +51,14 @@ public class Pickup : MonoBehaviour
         {
             for(int i = 0; i < amount; i++)     // Repete o processo x vezes. Nesse caso a quantidade de amount
             {
-                int index = other.transform.childCount;                         // Acessa obj e conta quantidade de filhos que ele tem
-                GameObject newBody = Instantiate(bodyPrefab, other.transform);  // Instancia o corpo como filho do player
-                newBody.transform.localPosition = new Vector3(0, -index, 0);    // 
+                int index = other.transform.childCount;                             // Acessa obj e conta quantidade de filhos que ele tem
+                GameObject newBody = Instantiate(bodyPrefab, other.transform);      // Instancia o corpo como filho do player
+                newBody.transform.localPosition = new Vector3(0, -index, 0);        // Posiciona novo corpo logo abaixo dos já existentes
+                FollowTarget followTarget = newBody.GetComponent<FollowTarget>();   // Acessa script para dar efeito de movimento no rabo da cobrinha
+                if(followTarget != null)                                            // Verifica se existe ou se deu certo
+                {
+                    followTarget.target = other.transform.GetChild(index -1);       // 
+                }
             }
         }
     }
