@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     public float gameSpeed = 2;             // Velocidade da tela
 
+    public int obstaclesAmount = 6;       // Maximo de força do obstaculo
+    public Color easyColor, mediumColor, heardColor;    // Cores dos obstaculos
+
     public float playerPosX, playerPosY;                // Posição do player
     public float minCamX, maxCamX, minCamY, maxCamY;    // Posição da camera
     private string filePath;                            // Caminho onde vai ser salvo arquivo
