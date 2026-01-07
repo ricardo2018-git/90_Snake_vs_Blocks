@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     // Variaveis de Controle
     public int health = 100;                // Vida atual
     public bool isDead = false;             // Sinaliza que player esta vivo
+    public float damageTime = 0.1f;         // Tempo de dano no player
+
 
     public float gameSpeed = 2;             // Velocidade da tela
 

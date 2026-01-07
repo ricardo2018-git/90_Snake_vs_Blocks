@@ -578,6 +578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   isDead: 0
+  damageTime: 0.25
   gameSpeed: 2
   obstaclesAmount: 6
   easyColor: {r: 0.024362564, g: 1, b: 0, a: 1}
