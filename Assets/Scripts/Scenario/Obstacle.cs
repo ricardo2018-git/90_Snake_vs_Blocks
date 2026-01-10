@@ -87,9 +87,10 @@ public class Obstacle : MonoBehaviour
     void PlayerDamage()     // Aplica dano no player
     {
         nextTime = Time.time + GameManager.gameManager.damageTime;  // Pega tempo do jogo + tempo de dano do player
-        amount--;   // Diminui em -1 o dano do abstaculo
-        SetAmountText();    // Atualiza canvas
-        if(amount <= 0)     // Verifica se acabou o dano do obstaculo
+        player.TakeDamage();    // Aplica dano no player
+        amount--;               // Diminui em -1 o dano do abstaculo
+        SetAmountText();        // Atualiza canvas
+        if(amount <= 0)         // Verifica se acabou o dano do obstaculo
         {
             gameObject.SetActive(false);    // Desativa obstaculo
             player = null;                  // Tira a referencia do player

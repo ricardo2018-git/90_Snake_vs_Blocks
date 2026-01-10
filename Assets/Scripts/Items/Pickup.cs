@@ -60,6 +60,12 @@ public class Pickup : MonoBehaviour
                     followTarget.target = other.transform.GetChild(index -1);       // 
                 }
             }
+            Player player = other.GetComponent<Player>();   // Cria referencia do player
+            if(player != null)  // Verifica se player não é nulo
+            {
+                player.SetText(player.transform.childCount);   // Atualiza qts de vidas no canvas do proprio player
+            }
+            gameObject.SetActive(false);    // Desativa game object
         }
     }
 }

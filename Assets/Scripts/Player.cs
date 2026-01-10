@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;            // Para manipular componente de Texto do canvas
+using UnityEngine.UI;   // Responsavel pelos componentes de UI
 
 public class Player : MonoBehaviour
 {
@@ -30,6 +32,10 @@ public class Player : MonoBehaviour
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
+    // ------------------------
+
+    // Variaveis de UI
+    public TMP_Text livesText;          // Qts de Vidas Player
     // ------------------------
 
     void Awake()
@@ -81,5 +87,24 @@ public class Player : MonoBehaviour
         Vector3 scale = transform.localScale;   // Declara uma var de transforme e seta com valor do transform do Player
         scale.x *= -1;                          // Inverte o valor de x para Positivo ou Negativo, depende do estado atual do valor
         transform.localScale = scale;           // Seta o novo valor no transform do Player
+    }
+
+    public void SetText(int amount)     // Atualiza qts vidas do player
+    {
+        livesText.text = amount.ToString();     // Atualiza qts vidas no canvas do player
+    }
+
+    public void TakeDamage()    // Aplica dano no player
+    {
+        int children = transform.childCount;    // Retorna qts de filhos do player, ou seja qts de vidas.
+        if(children <= 1)                       // Verifica se é fim de jogo
+        {
+            // *** Chamar game over no game manager
+        }
+        else
+        {
+            Destroy(transform.GetChild(children -1).gameObject);  // Destroi ultimo rabinho da cobrinha
+        }
+        SetText(children -1);   // Atualiza qts de vidas player no seu canvas
     }
 }
