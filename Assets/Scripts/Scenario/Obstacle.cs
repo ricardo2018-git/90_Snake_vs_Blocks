@@ -37,7 +37,7 @@ public class Obstacle : MonoBehaviour
         // Variaveis de Controle, metodos e funções
 
         // Associa Armas, Ataque, Prefab e Game Object
-        SetAmount();    // EXCLUIR DEPOIS
+        
     }
 
     void Update()

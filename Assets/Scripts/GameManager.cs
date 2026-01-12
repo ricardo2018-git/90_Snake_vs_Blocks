@@ -16,10 +16,11 @@ public class GameManager : MonoBehaviour
     public bool isDead = false;             // Sinaliza que player esta vivo
     public float damageTime = 0.1f;         // Tempo de dano no player
 
-
     public float gameSpeed = 2;             // Velocidade da tela
 
-    public int obstaclesAmount = 6;       // Maximo de força do obstaculo
+    public float obstaclesDistance = 13;    // Distancia do posicionamento dos obstaculos em relação ao player
+
+    public int obstaclesAmount = 6;         // Maximo de força do obstaculo
     public Color easyColor, mediumColor, heardColor;    // Cores dos obstaculos
 
     public float playerPosX, playerPosY;                // Posição do player
