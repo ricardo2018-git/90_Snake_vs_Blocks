@@ -15,6 +15,8 @@ public class Obstacles : MonoBehaviour
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
     public Obstacle[] allObstacles;     // Todos obstaculos
     public GameObject[] barriers;       // Todas barreiras
+    public Vector2 positionRange;       // Posição aleatório
+    public GameObject obstaclesGroup;   // Referencia do grupo de obstaculos
     // ------------------------
 
     // Variaveis de UI
@@ -28,7 +30,8 @@ public class Obstacles : MonoBehaviour
         player = GameObject.Find("Player").transform;   // Acessa transform do player  
 
         // Variaveis de Controle, metodos e funções
-        
+        SetObstacles();     // Habilita obstaculos
+
         // Associa Armas, Ataque, Prefab e Game Object
     }
 
@@ -53,11 +56,22 @@ public class Obstacles : MonoBehaviour
 
     void Reposition()   // Reposiciona obstaculos
     {
-        transform.position = new Vector2(0, player.position.y + GameManager.gameManager.obstaclesDistance); // Posiciona objetos acima do player em y
+        int obstaclesAmount = FindObjectsByType<Obstacles>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Length;               // Conta obj ativos
+        transform.position = new Vector2(0, player.position.y + (GameManager.gameManager.obstaclesDistance * (obstaclesAmount -1)));    // Posiciona objetos acima do player em y
+        obstaclesGroup.transform.localPosition = new Vector2(0, Random.Range(positionRange.x, positionRange.y));                        // Posiciona grupo de obj aleatorio
     }
 
     void DecreaseDifficulty()   // Deixa o jogo mai facil
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player")) // Verifica se colisão foi com player
+        {
+            Reposition();       // Reposiciona obstaculos
+            SetObstacles();     // Habilita obstaculos
+        }
     }
 }
