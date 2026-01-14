@@ -29,6 +29,7 @@ public class Obstacle : MonoBehaviour
     void Start()
     {
         // Associa Scripts
+        player = GameObject.Find("Player").GetComponent<Player>();          // Associa Player em tempo de execução
         playerLives = player.transform.childCount;  // Retorna qts de filhos do player, ou seja qts de vidas.
 
         // Associa Componentes

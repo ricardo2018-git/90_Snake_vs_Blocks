@@ -15,7 +15,7 @@ public class ObjectPool : MonoBehaviour
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
     public GameObject prefab;       // Referencia ao obj que vai ser instanciado
-    public GameObject[] prefabs;    // Vai guardar todos o prefab que forma instanciados
+    public GameObject[] prefabs;    // Vai guardar todos o prefab que for instanciados
     // ------------------------
 
     // Variaveis de UI
@@ -23,7 +23,13 @@ public class ObjectPool : MonoBehaviour
 
     void Awake()
     {
-        
+        // Variaveis de Controle, metodos e funções
+        prefabs = new GameObject[amount];               // Inicializa o vetor com tamanho de amount
+        for(int i = 0; i < amount; i++)                 // Loop amount vezes
+        {
+            prefabs[i] = Instantiate(prefab, new Vector2(0, 15), Quaternion.identity);  // Instancia prefab dentro do vetor na posição i desse momento
+            prefabs[i].SetActive(false);    // Desativa prefab da cena
+        }
     }
 
     void Start()
@@ -32,13 +38,7 @@ public class ObjectPool : MonoBehaviour
 
         // Associa Componentes
 
-        // Variaveis de Controle, metodos e funções
-        prefabs = new GameObject[amount];               // Inicializa o vetor com tamanho de amount
-        for(int i = 0; i < amount; i++)                 // Loop amount vezes
-        {
-            prefabs[i] = Instantiate(prefab, new Vector2(0, 15), Quaternion.identity);  // Instancia prefab dentro do vetor na posição i desse momento
-            prefabs[i].SetActive(false);    // Desativa prefab da cena
-        }
+        
 
         // Associa Armas, Ataque, Prefab e Game Object
     }

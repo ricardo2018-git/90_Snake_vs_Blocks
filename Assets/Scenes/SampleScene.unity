@@ -2042,12 +2042,14 @@ MonoBehaviour:
   easyColor: {r: 0.024362564, g: 1, b: 0, a: 1}
   mediumColor: {r: 0.9844359, g: 1, b: 0, a: 1}
   heardColor: {r: 1, g: 0, b: 0, a: 1}
+  xLimit: {x: -5, y: 5}
   playerPosX: 0
   playerPosY: 0
   minCamX: 0
   maxCamX: 0
   minCamY: 0
   maxCamY: 0
+  pickupPool: {fileID: 903727752}
 --- !u!1 &501318610
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     // ------------------------
 
     // Variaveis de Componentes
+    //private Transform player;               // Referencia a posição do player
     // ------------------------
 
     // Variaveis de Controle
@@ -23,12 +24,15 @@ public class GameManager : MonoBehaviour
     public int obstaclesAmount = 6;         // Maximo de força do obstaculo
     public Color easyColor, mediumColor, heardColor;    // Cores dos obstaculos
 
+    public Vector2 xLimit;                  // Limite para ser spawnado obj
+
     public float playerPosX, playerPosY;                // Posição do player
     public float minCamX, maxCamX, minCamY, maxCamY;    // Posição da camera
     private string filePath;                            // Caminho onde vai ser salvo arquivo
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
+    public ObjectPool pickupPool;                       // Referencia pool de objetos
     // ------------------------
 
     void Awake()
@@ -58,6 +62,7 @@ public class GameManager : MonoBehaviour
         // Associa Componentes
 
         // Variaveis de Controle, metodos e funções
+        SpawnPickups();     // Inicia loop para spawn de obj
 
         // Associa Armas, Ataque, Prefab e Game Object
     }
@@ -66,6 +71,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void SpawnPickups()     // Spawna um obj
+    {
+        pickupPool.GetObject().transform.position = new Vector2(Random.Range(xLimit.x, xLimit.y), player.transform.position.y + 15);    // Acessa pool de obj e posiciona acima do player
+        Invoke("SpawnPickups", Random.Range(1f, 3f));   // Executa o mesmo metodos em um tempo aleatorio enter x e y
     }
 
     public void Save()  // Salva todos dados do jogo
