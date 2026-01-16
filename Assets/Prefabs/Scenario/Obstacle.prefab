@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  sprite: {fileID: 8021770794855426035}
   amountText: {fileID: 1822500903810672802}
 --- !u!1 &5674372164177975817
 GameObject:

@@ -10,7 +10,7 @@ public class Obstacle : MonoBehaviour
     // ------------------------
 
     // Variaveis de Componentes
-    private SpriteRenderer sprite;      // Sprite do object
+    public SpriteRenderer sprite;      // Sprite do object
     private Color initialColor;         // Guarda cor gerada
     // ------------------------
 
@@ -33,7 +33,7 @@ public class Obstacle : MonoBehaviour
         playerLives = player.transform.childCount;  // Retorna qts de filhos do player, ou seja qts de vidas.
 
         // Associa Componentes
-        sprite = GetComponent<SpriteRenderer>();    // Acessa proprio componente
+        //sprite = GetComponent<SpriteRenderer>();    // Acessa proprio componente
 
         // Variaveis de Controle, metodos e funções
 
@@ -63,11 +63,21 @@ public class Obstacle : MonoBehaviour
 
     public void SetAmountText()     // Atualiza canvas
     {
-        amountText.text = amount.ToString();    // Converte para string e passa value para canvas
+        if(amountText != null)      // Verifica se Não é nulo
+            amountText.text = amount.ToString();    // Converte para string e passa value para canvas
+        else
+            Debug.LogWarning("amountText não está atribuído no Inspector!");    // Mensagem de erro
+
     }
 
     public void SetColor()          // Define a cor do obstaculo
     {
+        if(sprite == null)  // Verifica se sprite foi atribuido
+        {
+            Debug.LogError("SpriteRenderer não encontrado!");
+            return;
+        }
+
         Color newColor;             // Varivel para cor
         if(amount > playerLives)    // Verifica se dano é maior que qts de vida do player
         {
