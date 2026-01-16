@@ -2037,6 +2037,8 @@ MonoBehaviour:
   isDead: 0
   damageTime: 0.25
   gameSpeed: 2
+  multiplier: 1
+  cicleTime: 10
   obstaclesDistance: 13
   obstaclesAmount: 6
   easyColor: {r: 0.024362564, g: 1, b: 0, a: 1}

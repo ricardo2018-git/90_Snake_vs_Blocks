@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     // ------------------------
 
     // Variaveis de Componentes
-    //private Transform player;               // Referencia a posição do player
     // ------------------------
 
     // Variaveis de Controle
@@ -18,6 +17,9 @@ public class GameManager : MonoBehaviour
     public float damageTime = 0.1f;         // Tempo de dano no player
 
     public float gameSpeed = 2;             // Velocidade da tela
+
+    public float multiplier = 1;            // Multiplicador para aumentar a velocidade do player
+    public float cicleTime = 10;            // Tempo para chamar função para aumentar o nivel
 
     public float obstaclesDistance = 13;    // Distancia do posicionamento dos obstaculos em relação ao player
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
 
         // Variaveis de Controle, metodos e funções
         SpawnPickups();     // Inicia loop para spawn de obj
+        InvokeRepeating("IncreaseDifficulty", cicleTime, cicleTime);    // Fica executando infinitamente essa função. x = a primeira chamada, y = o tempo das proximas chamadas
 
         // Associa Armas, Ataque, Prefab e Game Object
     }
@@ -71,6 +74,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void IncreaseDifficulty()   // Aumenta a difuculdade do jogo
+    {
+        obstaclesAmount += 2;   // Aumenta força do obstaculos
+        multiplier *= 1.1f;     // Aumenta ela mesma em 10%
     }
 
     void SpawnPickups()     // Spawna um obj
