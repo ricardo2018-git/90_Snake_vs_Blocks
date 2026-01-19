@@ -13,13 +13,15 @@ public class UIManager : MonoBehaviour
     // ------------------------
 
     // Variaveis de Controle
+    private int points;             // Qts de pontos para calculos
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
     // ------------------------
 
     // Variaveis de UI
-    public TMP_Text healthText;     // Qts de Vidas Player
+    public TMP_Text healthText;     // Qts de Vidas player
+    public TMP_Text pointsText;      // Qts de pontos feito pelo player
     // ------------------------
 
     void Awake()
@@ -35,12 +37,23 @@ public class UIManager : MonoBehaviour
         // Associa Componentes
 
         // Variaveis de Controle, metodos e funções
-
+        points = 0;             // Inicia pontualçao em zero
+        if(pointsText != null)  // Verifica se texto UI é null
+        {
+            pointsText.text = points.ToString();    // Inicia pontuação do UI em zero
+        }
+        
         // Associa Armas, Ataque, Prefab e Game Object
     }
 
     void Update()
     {
         
+    }
+    
+    public void Score(int amount)   // Atualiza pontuação na UI
+    {
+        points += amount;                       // Soma pontos atuais mais pontos recebidos
+        pointsText.text = points.ToString();    // Atualiza pontuação na UI
     }
 }

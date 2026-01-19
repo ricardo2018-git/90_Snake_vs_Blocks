@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     private bool onGround;              // Sinaliza se player esta no chão
 
     private float mouseDistance;        // Distancia do mouse até player
+
+    private float lastYPos;             // Guarda a ultima posição do player no eixo y
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
@@ -46,8 +48,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         // Associa Scripts
-        gameManager = GameManager.gameManager;                              // Inicia acesso ao script static
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();    // Procura obj Canvas e inicia acesso ao script
+        gameManager = GameManager.gameManager;          // Inicia acesso ao script static
+        uiManager = FindAnyObjectByType<UIManager>();   // Procura pelo Script UIManager em todos gameObject
 
         // Associa Componentes
         sprite = GetComponent<SpriteRenderer>();    // Acessa componente
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
         // Variaveis de Controle, metodos e funções
         health = gameManager.health;                // Pega qts de vidas inicial do player
         isDead = gameManager.isDead;                // Pega status da vida inicial do player
+        lastYPos = transform.position.y;            // Pega posição inicial no eixo y do player e guarda     
         
         // Associa Armas, Ataque, Prefab e Game Object
     }
@@ -70,6 +73,12 @@ public class Player : MonoBehaviour
             float xPos = worldPoint.x;                                                  // Aqui estou pegando apena a posição do mouse em x
 
             mouseDistance = Mathf.Clamp(xPos - transform.position.x, -1, 1);            // Limita posição entre -1 e 1
+
+            if(transform.position.y > lastYPos + 5)    // Verifica se posição do player em y é maior que a ultima posição mais cinco
+            {
+                uiManager.Score(10);                // Chama metodo para atualizar pontuação em +10 na UI
+                lastYPos = transform.position.y;    // Atualiza a utima posição do player com posição atual do player no eixo y
+            }
         }
     }
 

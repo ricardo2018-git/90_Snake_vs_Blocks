@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         // Associa Scripts
         player = GameObject.Find("Player").GetComponent<Player>();          // Associa Player em tempo de execução
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();    // Procura obj Canvas e inicia acesso ao script
+        uiManager = FindAnyObjectByType<UIManager>();   // Procura pelo Script UIManager em todos gameObject
         
         // Associa Componentes
 
