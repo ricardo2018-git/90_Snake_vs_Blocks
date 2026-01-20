@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if (!isDead)    // Verifica se Player esta Vivo
+        if (!isDead && gameManager.gameOver == false)    // Verifica se Player esta Vivo
         {
             Vector3 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);   // Retorna posição do mouse sobre a tela
             float xPos = worldPoint.x;                                                  // Aqui estou pegando apena a posição do mouse em x
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isDead)    // Verifica se Player esta Vivo
+        if (!isDead && gameManager.gameOver == false)    // Verifica se Player esta Vivo
         {
             rb.linearVelocity = new Vector2(mouseDistance *  speed, gameManager.gameSpeed * gameManager.multiplier); // Faz player se movimentar em x seguindo o mouse e em y valorcrecebido do game manager e é multiplicado por multiplier para aumentar dificuldade
         }
@@ -105,10 +105,13 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()    // Aplica dano no player
     {
+        if(gameManager.gameOver)    // Verifica se game over é true
+            return;                 // Não deixa executar o codigo abaixo
+
         int children = transform.childCount;    // Retorna qts de filhos do player, ou seja qts de vidas.
         if(children <= 1)                       // Verifica se é fim de jogo
         {
-            // *** Chamar game over no game manager
+            gameManager.GameOver();     // Executa função de game over
         }
         else
         {

@@ -1,17 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;               // Para elementos de UI
+using UnityEngine.SceneManagement;  // Para carregar telas
 
 public class GameManager : MonoBehaviour
 {
-    // Variaveis de Scripts
+    // Scripts
     public static GameManager gameManager;  // Referencia desse script
     private Player player;                  // Referencia do script player
     private UIManager uiManager;            // Referencia do script UI
     // ------------------------
 
-    // Variaveis de Componentes
+    // Componentes
     // ------------------------
 
-    // Variaveis de Controle
+    // Controle Logico
     public int health = 100;                // Vida atual
     public bool isDead = false;             // Sinaliza que player esta vivo
     public float damageTime = 0.1f;         // Tempo de dano no player
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public float multiplier = 1;            // Multiplicador para aumentar a velocidade do player
     public float cicleTime = 10;            // Tempo para chamar função para aumentar o nivel
+
+    public bool gameOver = true;            // Sinaliza se jogo acabou, Vai iniciar como true para o player não se mover antes de clicar no btn start game
 
     public float obstaclesDistance = 13;    // Distancia do posicionamento dos obstaculos em relação ao player
 
@@ -33,8 +37,14 @@ public class GameManager : MonoBehaviour
     private string filePath;                            // Caminho onde vai ser salvo arquivo
     // ------------------------
 
-    // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
+    // Armas, Ataque, Prefab, Game Object e Audio
     public ObjectPool pickupPool;                       // Referencia pool de objetos
+    // ------------------------
+
+    // UI
+    public GameObject gamePanel;        // Recebe painel UI 
+    public GameObject startPanel;       // Recebe painel UI Inicio de jogo
+    public GameObject gameOverPanel;    // Recebe painel UI game over
     // ------------------------
 
     void Awake()
@@ -74,6 +84,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGame()     // Inicia jogo
+    {
+        gamePanel.SetActive(true);      // Ativa painel em cena
+        startPanel.SetActive(false);    // Desativa painel de cena
+        gameOver = false;               // Libera player para inicio do jogo
+    }
+
+    public void GameOver()      // Fim de jogo
+    {
+        gameOver = true;                // Sinaliza que player morreu
+        gameSpeed = 0;                  // Zera velocidade do jogo
+        gameOverPanel.SetActive(true);  // Ativa painel game over
     }
 
     void IncreaseDifficulty()   // Aumenta a difuculdade do jogo
