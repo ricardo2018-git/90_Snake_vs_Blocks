@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;           // Necessário para usar IEnumerator e corrotinas
 using UnityEngine.UI;               // Para elementos de UI
 using UnityEngine.SceneManagement;  // Para carregar telas
 
@@ -65,15 +66,20 @@ public class GameManager : MonoBehaviour
         //Load();     // Carrega dados salvo Fase etc..
     }
 
-    void Start()
+    IEnumerator Start()
     {
         // Associa Scripts
         player = GameObject.Find("Player").GetComponent<Player>();          // Associa Player em tempo de execução
         uiManager = FindAnyObjectByType<UIManager>();   // Procura pelo Script UIManager em todos gameObject
-        
+
         // Associa Componentes
 
         // Variaveis de Controle, metodos e funções
+        while (gameOver)    // Enquando for verdadeiro
+        {
+            yield return null;  // Retorna um frame, precisei mudar start para corroutina
+        }
+
         SpawnPickups();     // Inicia loop para spawn de obj
         InvokeRepeating("IncreaseDifficulty", cicleTime, cicleTime);    // Fica executando infinitamente essa função. x = a primeira chamada, y = o tempo das proximas chamadas
 
@@ -98,6 +104,11 @@ public class GameManager : MonoBehaviour
         gameOver = true;                // Sinaliza que player morreu
         gameSpeed = 0;                  // Zera velocidade do jogo
         gameOverPanel.SetActive(true);  // Ativa painel game over
+    }
+
+    public void ReloadScene()   // Recarregar propria cena
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);   // Recarrega cena atual pelo index
     }
 
     void IncreaseDifficulty()   // Aumenta a difuculdade do jogo

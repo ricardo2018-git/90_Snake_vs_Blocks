@@ -55,7 +55,15 @@ public class ObjectPool : MonoBehaviour
         {
             index = 0;      // Reseta index para primeira posição
         }
-        prefabs[index].SetActive(true); // Ativa prefab na cena
-        return prefabs[index];          // Retorna prefab ativo
+        if(prefabs[index] != null)  // verifica se não foi destruido
+        {
+            prefabs[index].SetActive(true); // Ativa prefab na cena
+            return prefabs[index];          // Retorna prefab ativo
+        }
+        else
+        {
+            Debug.LogWarning("Objeto do pool foi detruido!");
+            return null;
+        }
     }
 }
