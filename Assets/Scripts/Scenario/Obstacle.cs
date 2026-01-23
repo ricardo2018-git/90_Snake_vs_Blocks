@@ -6,7 +6,7 @@ using System.Collections;   // Responsavel pelos componentes de UI
 public class Obstacle : MonoBehaviour
 {
     // Variaveis de Scripts
-    public Player player;               // Referencia do player
+    private Player player;               // Referencia do player
     // ------------------------
 
     // Variaveis de Componentes
@@ -21,6 +21,7 @@ public class Obstacle : MonoBehaviour
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
+    public AudioClip impactSound;   // Son
     // ------------------------
 
     // Variaveis de UI
@@ -97,6 +98,10 @@ public class Obstacle : MonoBehaviour
 
     void PlayerDamage()     // Aplica dano no player
     {
+        //if (GameManager.gameManager.gameOver)   // Verifica se acabou jogo
+        //    return;         // Assim não fica tocando son quando perder
+
+        AudioSource.PlayClipAtPoint(impactSound, Camera.main.transform.position);   // Toca son, na posição da camera, pode passar volume no proximo parametro que vai de 0 até 1. *Obs sem parametro toca no valor maximo = 1
         nextTime = Time.time + GameManager.gameManager.damageTime;  // Pega tempo do jogo + tempo de dano do player
         player.TakeDamage();    // Aplica dano no player
         amount--;               // Diminui em -1 o dano do abstaculo

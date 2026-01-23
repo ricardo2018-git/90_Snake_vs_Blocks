@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     // Armas, Ataque, Prefab, Game Object e Audio
     public ObjectPool pickupPool;                       // Referencia pool de objetos
+    public AudioClip clickSound;                        // Sons
     // ------------------------
 
     // UI
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()     // Inicia jogo
     {
+        AudioSource.PlayClipAtPoint(clickSound, Camera.main.transform.position);    // Toca son, na posição da camera, pode passar volume no proximo parametro que vai de 0 até 1. *Obs sem parametro toca no valor maximo = 1
         gamePanel.SetActive(true);      // Ativa painel em cena
         startPanel.SetActive(false);    // Desativa painel de cena
         gameOver = false;               // Libera player para inicio do jogo

@@ -16,6 +16,7 @@ public class Pickup : MonoBehaviour
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
     public GameObject bodyPrefab;   // Referencia do corpo do player
+    public AudioClip pickupSound;   // Son
     // ------------------------
 
     // Variaveis de UI
@@ -49,6 +50,7 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))     // Verifica se obj contem tag player
         {
+            AudioSource.PlayClipAtPoint(pickupSound, Camera.main.transform.position);   // Toca son, na posição da camera, pode passar volume no proximo parametro que vai de 0 até 1. *Obs sem parametro toca no valor maximo = 1
             for(int i = 0; i < amount; i++)     // Repete o processo x vezes. Nesse caso a quantidade de amount
             {
                 int index = other.transform.childCount;                             // Acessa obj e conta quantidade de filhos que ele tem
@@ -65,7 +67,7 @@ public class Pickup : MonoBehaviour
             {
                 player.SetText(player.transform.childCount);   // Atualiza qts de vidas no canvas do proprio player
             }
-            gameObject.SetActive(false);    // Desativa game object
         }
+        gameObject.SetActive(false);    // Desativa game object coletavel. Assim ele desativa todos que ficar sobreposto em outro obj
     }
 }

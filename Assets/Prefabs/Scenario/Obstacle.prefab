@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   sprite: {fileID: 8021770794855426035}
+  impactSound: {fileID: 8300000, guid: b6f123a8988dade4c87425f0ef2853b5, type: 3}
   amountText: {fileID: 1822500903810672802}
 --- !u!1 &5674372164177975817
 GameObject:
