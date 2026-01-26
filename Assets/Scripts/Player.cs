@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     private float mouseDistance;        // Distancia do mouse até player
 
     private float lastYPos;             // Guarda a ultima posição do player no eixo y
+
+    private bool sliding;               // Sinaliza se esta deslizando
+    private int  dir;                   // Direção que ele vai deslizar, -1=esquerda e 1=direita
     // ------------------------
 
     // Variaveis de Armas, Ataque, Prefab, Game Object e Audio
@@ -86,7 +89,10 @@ public class Player : MonoBehaviour
     {
         if (!isDead && gameManager.gameOver == false)    // Verifica se Player esta Vivo
         {
-            rb.linearVelocity = new Vector2(mouseDistance *  speed, gameManager.gameSpeed * gameManager.multiplier); // Faz player se movimentar em x seguindo o mouse e em y valorcrecebido do game manager e é multiplicado por multiplier para aumentar dificuldade
+            if(!sliding)    // Verifica se jogador Não esta deslizando
+                rb.linearVelocity = new Vector2(mouseDistance *  speed, gameManager.gameSpeed * gameManager.multiplier); // Faz player se movimentar em x seguindo o mouse e em y valorcrecebido do game manager e é multiplicado por multiplier para aumentar dificuldade
+            else            // Se ele estiver deslizando
+                rb.linearVelocity = new Vector2(dir * 2.5f, gameManager.gameSpeed * gameManager.multiplier);   // Joga o player para direita ou esquerda
         }
     }
 
@@ -118,5 +124,17 @@ public class Player : MonoBehaviour
             Destroy(transform.GetChild(children -1).gameObject);  // Destroi ultimo rabinho da cobrinha
         }
         SetText(children -1);   // Atualiza qts de vidas player no seu canvas
+    }
+
+    public void Slide(int direction)    // Direção que player vai caso ele bata em um pareira
+    {
+        sliding = true;                     // Sinaliza que esta deslizando
+        dir = direction;                    // Recebe direção que player sair ser jogado
+        Invoke("SetSlideToFalse", 0.25f);   // Executa a função em x segundos
+    }
+
+    void SetSlideToFalse()      // Reseta variavel para false
+    {
+        sliding = false;    // Reseta var 
     }
 }
